@@ -1,0 +1,43 @@
+:root {
+    --primary-color: #126E82;
+    --secondary-color: #51C4D3;
+    --tertiary-color: #132C33;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color:  #d8e3e7;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    color: #efefef;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 33px;
+    text-align: center;
+    padding: 5px;
+    background-color: var(--tertiary-color);
+    
+}
+
+.city-search {
+    border: 2px solid var(--tertiary-color);
+    display: flex;
+    padding: 50px;
+    
+}
+
+.weather-container {
+    border: 2px solid var(--tertiary-color);
+    border-radius: 10px;
+    display: flex;
+    padding: 50px;
+    margin: 40px;
+
+}
