@@ -16,17 +16,19 @@
 <header class="program-title">Weather Dashboard</header>
 
 <body>
+
     <div class="container row">
         <div class="city-search row">
-            <h3>Container</h3>
+            <form id="weather-search-form">
+                <h2>Search for a City:</h2>
+                <input id="weather-search" class="search-box" placeholder="Search by City" type="text">
+                <button id="search-btn" class="button">Search</button>
+            </form>
         </div>
+
+
         <div class="weather-container row">
-            <div class="city-weather row">
-                <h3 class="col-md-12">Container</h3>
-            </div>
-            <div class="upcoming-forecast row">
-                <h3 class="col-md-12">Container</h3>
-            </div>
+            <div class="city-weather"></div>
         </div>
     </div>
 </body>

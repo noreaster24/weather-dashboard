@@ -26,11 +26,38 @@ header {
     
 }
 
+.conatiner {
+    height: 100%;
+    padding: 15px;
+}
+
 .city-search {
-    border: 2px solid var(--tertiary-color);
     display: flex;
     padding: 50px;
     
+}
+
+.city-search h2 {
+    font-weight: bold;
+    padding: 0 0 10px 0;
+}
+
+.search-box {
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    border-radius:20px;
+}
+
+.button {
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: #efefef;
+    font-weight: bold;
+    border-radius: 20px;
+    border: none;
 }
 
 .weather-container {
@@ -39,5 +66,6 @@ header {
     display: flex;
     padding: 50px;
     margin: 40px;
+    width: 60%;
 
 }
