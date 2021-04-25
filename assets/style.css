@@ -26,9 +26,11 @@ header {
     
 }
 
-.conatiner {
+.container {
     height: 100%;
     padding: 15px;
+    margin: 0;
+    border: 0;
 }
 
 .city-search {
