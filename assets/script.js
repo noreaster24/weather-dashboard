@@ -3,20 +3,19 @@ var searchButtonEl = document.querySelector("#search-btn");
 var weatherContainerEl = document.querySelector("#weather-container");
 
 
-var cityLocation = function () {
-    console.log("hello,world!");
-};
-
 var submitWeatherHandler = function (event) {
     event.preventDefault();
     // pull the value from the input form
-    var cityWeather = weatherInputEl.value.trim();
+    var city = weatherInputEl.value.trim();
+    console.log(city);
 
-    if (cityWeather) {
+    if (city) {
         // run the city through the api fetch
-        getWeatherInfo(cityWeather);
+        cityLocation(city);
+        console.log(city);
+        getWeatherInfo(city);
         weatherInputEl.value = "";
-
+    
     }
     else {
         alert("Enter a city name");
@@ -26,16 +25,19 @@ var submitWeatherHandler = function (event) {
 var cityLocation = function (city) {
 
     var apiKey = "aa39a52add5cde0eecb176481fd61d11"
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units-imperial&appid=" + apiKey
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey
 
     fetch(apiUrl)
         .then(function (response) {
-
+            console.log(response);
             if (Response.ok) {
                 Response.json()
                     .then(function (data) {
+
                         var lon = data.coord.lon;
                         var lat = data.coord.lat;
+
+                        console.log(lat, lon);
 
                         getWeatherInfo(city, lon, lat);
                     });
@@ -44,6 +46,7 @@ var cityLocation = function (city) {
             }
         })
 };
+
 
 function cityButton(event) {
     event.preventDefault();
@@ -56,7 +59,7 @@ function cityButton(event) {
 var getWeatherInfo = function (city, lon, lat) {
 
     var apiKey = "aa39a52add5cde0eecb176481fd61d11"
-    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&?lon=" + lon + "&units-imperial&exclude-minutely,hourly,alerts&appid=" + apiKey
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&exclude=minutely,hourly,alerts&appid=" + apiKey
 
     fetch(apiUrl)
         .then(function (response) {
@@ -117,5 +120,5 @@ var getWeatherInfo = function (city, lon, lat) {
         })
 };
 
-getWeatherInfo(city);
+// getWeatherInfo(city);
 searchButtonEl.addEventListener("click", submitWeatherHandler);
