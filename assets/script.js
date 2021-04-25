@@ -23,11 +23,40 @@ var submitWeatherHandler = function (event) {
     };
 };
 
+var cityLocation = function (city) {
+
+    var apiKey = "aa39a52add5cde0eecb176481fd61d11"
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units-imperial&appid=" + apiKey
+
+    fetch(apiUrl)
+        .then(function (response) {
+
+            if (Response.ok) {
+                Response.json()
+                    .then(function (data) {
+                        var lon = data.coord.lon;
+                        var lat = data.coord.lat;
+
+                        getWeatherInfo(city, lon, lat);
+                    });
+            } else {
+                console.log("error: " + response.statusText);
+            }
+        })
+};
+
+function cityButton(event) {
+    event.preventDefault();
+    var city = weatherInputEl.value.trim();
+
+    cityLocation(city);
+};
+
 // fetch function to get the city weather information
 var getWeatherInfo = function (city, lon, lat) {
 
     var apiKey = "aa39a52add5cde0eecb176481fd61d11"
-    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=", lat, "&?lon=", lon, "&appid=", + apiKey
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&?lon=" + lon + "&units-imperial&exclude-minutely,hourly,alerts&appid=" + apiKey
 
     fetch(apiUrl)
         .then(function (response) {
@@ -47,12 +76,12 @@ var getWeatherInfo = function (city, lon, lat) {
 
                         // create HTML elements
                         var weather = document.createElement("div");
-                        
+
                         var cityEl = document.createElement("h2");
                         cityEl.textContent = weatherInputEl;
 
                         var dateEl = document.createElement("h2");
-                        dateEl.textContent = "( " + getDate + " )";
+                        dateEl.textContent = city + " " + "( " + getDate + " )";
 
                         var weatherIconEl = document.createElement("img");
                         weatherIconEl.setAttribute("src", getIcon);
@@ -88,5 +117,5 @@ var getWeatherInfo = function (city, lon, lat) {
         })
 };
 
-getWeatherInfo(boston);
+getWeatherInfo(city);
 searchButtonEl.addEventListener("click", submitWeatherHandler);
